@@ -1,6 +1,22 @@
 alert("HANGMAN");
 
-let userInputWord = prompt("Please enter a word!");
+
+//We ask the user to input a word, and keep asking until
+//we're sure it's a word.
+
+let userInputWord;
+
+while (true) {
+
+  userInputWord = prompt("Please enter a word!");
+
+  if (/^[a-zA-Z]+$/.test(userInputWord)) {
+    break;
+  } else {
+    alert("Only letters please!");
+  }
+}
+
 
 let wordArray = [];
 let wordLength = userInputWord.length;
@@ -94,7 +110,6 @@ while (failedGuesses < guessesAllowed) {
   //If you've guessed too many times you lose.
 
   if (correctGuesses === wordLength) {
-    
     displayString = displayArray.join(" ");
     alert(`${displayString} - You WIN!`);
 
