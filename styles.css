@@ -16,19 +16,141 @@ body {
   font-family: "dark_woods";
   font-size: 3rem;
   letter-spacing: 2;
+  overflow: hidden;
 }
 
 .viewport {
-  display: flex;
+  display: grid;
+
+  grid-template-columns: 1fr 1fr 1fr;
+  min-width: 100vw;
+  min-height: 100vh;
   justify-content: center;
-  align-items: center;
-  padding-top: 15%;
-  background-color: #000;
+  align-items: top;
+  
+  background-image: url("/images/Hangman_background.png");
+  /*background-color: white;*/
+  background-size: cover;
+  background-position: center bottom;
 }
 
+
+
+.image {
+  grid-column: 1 / 2;
+  align-self: end;
+  justify-self: end;
+  
+  background-image: url('/images/svg_gallows.svg');
+  position: fixed;
+  background-size: contain;
+  width: 1000px;
+  min-width: 500px;
+  height: 600px;
+
+
+  background-repeat: no-repeat;
+
+  margin-top: 0;
+  margin-left: 0;
+
+  left: 200px;
+  bottom: 120px;
+
+  overflow: hidden;
+}
+
+.hangmanContainer {
+
+  position: relative;
+  height: 100%;
+  width: 400px;
+
+  left: 8%;
+  top: 3%;
+
+  overflow: hidden;
+
+  animation: swinging 2s linear;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+  animation-iteration-count: infinite;
+  transform-origin: top center;
+
+}
+
+.hangman {
+  background-image: url('/images/svg_hangman_rope.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+
+  top: -100px;
+
+  height: 100%;
+  width: 100%;
+
+  animation: hanging 0.4s cubic-bezier(0.5, 1.6, 0.4, 0.7);
+  animation-play-state: paused;
+  animation-fill-mode: forwards;
+
+}
+
+@keyframes hanging {
+ 
+  0% {
+    transform: translate(0,0);
+  }
+
+  /*25% {
+    transform: translate(0, 200px);
+  }
+
+  75% {
+    transform: translate(0, 190px);
+  }*/
+
+  100% {
+    transform: translate(0, 100px);
+  }
+}
+
+@keyframes swinging {
+  0% {
+    transform: rotate(0deg);
+  }
+
+
+  25% {
+    transform: rotate(0.5deg);
+  }
+
+  50% {
+    transform: rotate(0deg);
+  }
+
+  75% {
+    transform: rotate(-0.5deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+  
+}
+
+
 .container {
+  grid-column: 2 / 3;
+
   text-align: center;
   line-height: 5rem;
+  margin-top: 15%;
+  z-index: 100;
+}
+
+.empty {
+  grid-column: 3 / 4;
 }
 
 .arrayTextClass {
@@ -46,7 +168,7 @@ input[type="text"] {
   border-radius: 2rem;
   padding: 0 1rem;
   color: white;
-  background-color: #181818;
+  background-color: hsl(198, 80%, 9%);
   text-align: center;
 }
 

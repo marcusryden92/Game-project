@@ -180,6 +180,12 @@ function gameText(gameTextVar) {
 function playLoseSound() {
   let loseSound =  document.getElementById('gallows');
   loseSound.play();
+
+  let hangmanEl = document.querySelector('.hangman');
+  hangmanEl.style.animationPlayState = 'running';
+
+  let hangmanEl2 = document.querySelector('.hangmanContainer');
+  hangmanEl2.style.animationPlayState = 'running';
 }
 
 //Function for displaying a prompt, and transfering the form input to the relevant variable:
