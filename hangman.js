@@ -7,7 +7,7 @@ let userInputWord;
 
 while (true) {
   
-  userInputWord = playerPrompt("Please enter a word!");
+  userInputWord = prompt("Please enter a word!");
 
   if (/^[a-zA-Z]+$/.test(userInputWord)) {
     break;
@@ -48,34 +48,34 @@ let correctGuesses = 0;
 //The main game loop. This loop runs as long as the number of wrong
 //guesses is lower than the number of allowed guesses:
 
-while (failedGuesses < guessesAllowed) {
+let formEl = document.querySelector("#guessForm");
+formEl.addEventListener("submit", function (e) {
+  e.preventDefault();
 
   //Prompting the player to guess a letter:
 
-  let guessedLetter;
+  let guessEl = document.querySelector("#guess");
+  let guessedLetter = guessEl.value;
 
   //We have to make sure that the letter hasn't already been guessed,
   //otherwise we can keep guessing the same (correct) letter and still win.
 
-  while (true) {
-    guessedLetter = playerPrompt("Please guess a letter!");
 
-    let originalLetter = true;
+  let originalLetter = true;
 
-    //We're checking the guessed letter against the displayArray,
-    //in order to make sure it hasn't already been logged in the correct answer.
+  //We're checking the guessed letter against the displayArray,
+  //in order to make sure it hasn't already been logged in the correct answer.
 
-    for (let i = 0; i < wordLength; i++) {
-      if (compareLetters(guessedLetter, displayArray[i])) {
-        originalLetter = false;
-      }
+  for (let i = 0; i < wordLength; i++) {
+    if (compareLetters(guessedLetter, displayArray[i])) {
+      originalLetter = false;
     }
+  }
 
-    if (originalLetter) {
-      break;
-    } else {
-      gameText("You have already guessed that letter!");
-    }
+  if (!originalLetter) {
+    gameText("You have already guessed that letter!");
+    guessEl.value = "";
+    return;
   }
 
   //We initialize a boolean value to check if a particular guess is right or wrong.
@@ -111,18 +111,21 @@ while (failedGuesses < guessesAllowed) {
 
   if (correctGuesses === wordLength) {
     displayString = displayArray.join(" ");
-    gameText(`${displayString} - You WIN!`);
-
-    break;
+    arrayText(displayString);
+    gameText('You WIN!');
+    guessEl.value = "";
+    return;
   } else if (failedGuesses === guessesAllowed) {
-    alert("You lose!");
-    break;
+    gameText("You lose!");
+    guessEl.value = "";
+    return;
   }
 
   //If you guessed correctly, but you still haven't guessed the whole word...
 
   else if (guessedCorrectly === true) {
-    alert("You guessed correctly!");
+    gameText("You guessed correctly!");
+    guessEl.value = "";
   }
 
   //If you guess wrong:
@@ -132,11 +135,12 @@ while (failedGuesses < guessesAllowed) {
       `You guessed wrong! You have ${guessesAllowed - failedGuesses} 
       guesses remaining!`
     );
+    guessEl.value = "";
   }
 
   displayString = displayArray.join(" ");
   arrayText(displayString);
-}
+});
 
 
 //*********************************//
@@ -172,19 +176,19 @@ function gameText(gameTextVar) {
 
 //Function for displaying a prompt, and transfering the form input to the relevant variable:
 
-function playerPrompt(promptMessage) {
-  let displayGameEl = document.querySelector(".gameTextClass");
-  displayGameEl.innerHTML = promptMessage;
+// function playerPrompt(promptMessage) {
+//   let displayGameEl = document.querySelector(".gameTextClass");
+//   displayGameEl.innerHTML = promptMessage;
 
-  let formEl = document.querySelector("#guessForm");
-  let guessValue;
+//   let formEl = document.querySelector("#guessForm");
+//   let guessValue;
 
-  formEl.addEventListener("submit", function (e) {
-    e.preventDefault();
+//   formEl.addEventListener("submit", function (e) {
+//     e.preventDefault();
 
-    let guessEl = document.querySelector("#guess");
-    guessValue = guessEl.value;
-  });
+//     let guessEl = document.querySelector("#guess");
+//     guessValue = guessEl.value;
+//   });
 
-  return guessValue;
-}
+//   return guessValue;
+// }
