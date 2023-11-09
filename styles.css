@@ -177,7 +177,7 @@ input[type="text"] {
 
 #playWindButton {
   position: relative;
-  justify-self: end;
+  top: 30px;
   font-size: 3rem;
   color: hsl(198, 80%, 10%);
   border-radius: 2rem;
