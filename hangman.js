@@ -113,11 +113,14 @@ formEl.addEventListener("submit", function (e) {
     displayString = displayArray.join(" ");
     arrayText(displayString);
     gameText('You WIN!');
+    formEl.style.display = "none";
     guessEl.value = "";
     return;
   } else if (failedGuesses === guessesAllowed) {
     gameText("You lose!");
     guessEl.value = "";
+    formEl.style.display = "none";
+    playLoseSound();
     return;
   }
 
@@ -172,6 +175,11 @@ function arrayText(arrayTextVar) {
 function gameText(gameTextVar) {
   let gameTextEl = document.querySelector(".gameTextClass");
   gameTextEl.innerHTML = gameTextVar;
+}
+
+function playLoseSound() {
+  let loseSound =  document.getElementById('gallows');
+  loseSound.play();
 }
 
 //Function for displaying a prompt, and transfering the form input to the relevant variable:
