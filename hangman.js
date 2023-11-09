@@ -170,7 +170,7 @@ function gameText(gameTextVar) {
   gameTextEl.innerHTML = gameTextVar;
 }
 
-//Function for displaying a prompt, and parsing the form input to the relevant variable:
+//Function for displaying a prompt, and transfering the form input to the relevant variable:
 
 function playerPrompt(promptMessage) {
   let displayGameEl = document.querySelector(".gameTextClass");
