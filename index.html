@@ -1,12 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hangman</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="viewport">
+      <div class="container">
+
+        <div class="arrayTextClass">Display Array Text</div>
+
+        <div class="gameTextClass">Display Game Text</div>
+
+        <form id="guessForm">
+          <input type="text" id="guess" />
+          <button type="submit">Answer</button>
+        </form>
+
+      </div>
+    </div>
+
     <script src="hangman.js"></script>
-</head>
-<body>
-    
-</body>
+  </body>
 </html>
