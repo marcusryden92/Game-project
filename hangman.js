@@ -6,7 +6,7 @@
 let userInputWord;
 
 while (true) {
-  
+
   userInputWord = prompt("Please enter a word!");
 
   if (/^[a-zA-Z]+$/.test(userInputWord)) {
@@ -15,6 +15,21 @@ while (true) {
     gameText("Only letters please!");
   }
 }
+
+let windPlaying = false;
+
+document.getElementById('playWindButton').addEventListener('click', function () {
+
+  let windSound = document.getElementById('wind');
+
+  if (!windPlaying) {
+    windSound.play();
+  } else {
+    windSound.pause();
+  }
+
+  windPlaying = !windPlaying;
+});
 
 let wordArray = [];
 let wordLength = userInputWord.length;
@@ -178,7 +193,7 @@ function gameText(gameTextVar) {
 }
 
 function playLoseSound() {
-  let loseSound =  document.getElementById('gallows');
+  let loseSound = document.getElementById('gallows');
   loseSound.play();
 
   let hangmanEl = document.querySelector('.hangman');
@@ -187,6 +202,7 @@ function playLoseSound() {
   let hangmanEl2 = document.querySelector('.hangmanContainer');
   hangmanEl2.style.animationPlayState = 'running';
 }
+
 
 //Function for displaying a prompt, and transfering the form input to the relevant variable:
 
