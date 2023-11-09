@@ -22,7 +22,7 @@ body {
 .viewport {
   display: grid;
 
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1.5fr 1fr;
   min-width: 100vw;
   min-height: 100vh;
   justify-content: center;
@@ -39,7 +39,6 @@ body {
 .image {
   grid-column: 1 / 2;
   align-self: end;
-  justify-self: end;
   
   background-image: url('/images/svg_gallows.svg');
   position: fixed;
@@ -54,7 +53,7 @@ body {
   margin-top: 0;
   margin-left: 0;
 
-  left: 200px;
+  left: 100px;
   bottom: 120px;
 
   overflow: hidden;
@@ -145,7 +144,7 @@ body {
 
   text-align: center;
   line-height: 5rem;
-  margin-top: 15%;
+  margin-top: 20%;
   z-index: 100;
 }
 
@@ -155,6 +154,10 @@ body {
 
 .arrayTextClass {
     font-size: 4rem;
+}
+
+.gameTextClass {
+  font-size: 2.5rem;
 }
 
 .guessForm {
